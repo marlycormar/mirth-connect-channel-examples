@@ -18,6 +18,7 @@ There are basically two ways to create a container from this image:
 1. Make the necessary changes to the file, e.g., add db credentials.
 
 1. Run Mirth Connect with this configuration:
+        
         docker run -d -P -v <absolute_path>/mirth.properties:/opt/mirth-connect/conf/mirth.properties marlycormar/mirth-connect-3.5.1
 
 ----------------------------------------------------------
