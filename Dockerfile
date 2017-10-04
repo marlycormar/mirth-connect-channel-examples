@@ -1,5 +1,12 @@
-FROM java
+#
+# Oracle Java 8 Dockerfile
+#
 
+
+# Pull base image.
+FROM ubuntu
+
+# Define Mirth Connect version to be installed
 ENV MIRTH_CONNECT_VERSION 3.5.1.b194
 
 # Mirth Connect is run with user `connect`, uid = 1000
@@ -16,8 +23,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
 	&& rm /usr/local/bin/gosu.asc \
 	&& chmod +x /usr/local/bin/gosu
 
+
+RUN apt-get update && apt-get install -y software-properties-common
+
+# Install Java.
+RUN \
+  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
+  add-apt-repository -y ppa:webupd8team/java && \
+  apt-get update && \
+  apt-get install -y oracle-java8-installer && \
+  rm -rf /var/lib/apt/lists/* && \
+  rm -rf /var/cache/oracle-jdk8-installer
+
+
+
 VOLUME /opt/mirth-connect/appdata
 
+# Install Mirth
 RUN \
   cd /tmp && \
   wget http://downloads.mirthcorp.com/connect/$MIRTH_CONNECT_VERSION/mirthconnect-$MIRTH_CONNECT_VERSION-unix.tar.gz && \
