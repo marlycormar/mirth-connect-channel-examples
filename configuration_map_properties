@@ -1,0 +1,10 @@
+# The JDBC Driver class to use when connecting to the FHIR database.
+fhirDBDriver = org.postgresql.Driver
+# The JDBC connection URL to use when connecting to the FHIR database.
+fhirDBUrl = jdbc:postgresql://localhost:<docker_port>/fhirdb
+# The username to use when connecting to the FHIR database.
+fhirDBUsername = mirth
+# The password to use when connecting to the FHIR database.
+fhirDBPassword = password
+# The maximum amount of retry attempts when a database connection fails.
+fhirDBMaxRetries = 3
