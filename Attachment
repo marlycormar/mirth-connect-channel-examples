@@ -1,0 +1,20 @@
+// If an incoming request includes a Binary resource, add an attachment for it
+
+if ($('fhirType').toLowerCase() == 'binary' && message) {
+	var contentType = $('headers').getHeader('Content-Type');
+	var resource;
+	
+	if (contentType.toLowerCase() == FhirUtil.getMIMETypeXML().toLowerCase() || contentType.toLowerCase() == FhirUtil.getMIMETypeJSON().toLowerCase()) {
+		resource = FhirUtil.isMIMETypeXML(contentType) ? FhirUtil.fromXML(message) : FhirUtil.fromJSON(message);
+		var attachmentId = addAttachment(resource.getContentAsBase64(), resource.getContentType()).getAttachmentId();
+		resource.setContentAsBase64(attachmentId);
+	} else {
+		var attachmentId = addAttachment(message, contentType).getAttachmentId();
+		resource = FhirUtil.createBinaryResource(attachmentId, contentType);
+	}
+
+	// Always return XML for Binary resources
+	return FhirUtil.toXML(resource);
+}
+
+return message;
