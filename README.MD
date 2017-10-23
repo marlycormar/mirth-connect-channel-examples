@@ -1,11 +1,11 @@
 # MIRTH CONNECT EXAMPLE ON DOCKER
 
 1. Create all the containers in detached mode:
-		docker-compose up -d
+			docker-compose up -d
         
 1. Double click file `webstart.jnlp`. Use credentials:
-        admin
-        admin
+        	admin
+        	admin
 
 	
 
