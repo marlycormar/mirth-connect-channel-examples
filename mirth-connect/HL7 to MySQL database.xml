@@ -3,7 +3,7 @@
   <nextMetaDataId>2</nextMetaDataId>
   <name>HL7 to MySQL database</name>
   <description></description>
-  <revision>18</revision>
+  <revision>21</revision>
   <sourceConnector version="3.5.1">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -205,7 +205,11 @@
 try {
 	dbConn = DatabaseConnectionFactory.createDatabaseConnection(&apos;com.mysql.jdbc.Driver&apos;,&apos;jdbc:mysql://mysql/mirth-test&apos;,&apos;root&apos;,&apos;password&apos;);
 
-	var result = dbConn.executeUpdate(&quot;INSERT INTO Patient (PatientID, Account, LastName, FirstName) VALUES (&apos;&quot;+$(&apos;PID&apos;)+&quot;&apos;, &apos;&quot;+ $(&apos;Account&apos;) +&quot;&apos;, &apos;&quot;+ $(&apos;LastName&apos;) +&quot;&apos;, &apos;&quot;+ $(&apos;FirstName&apos;) +&quot;&apos;)&quot;);
+	
+
+	var result = dbConn.executeUpdate(&quot;INSERT INTO PERSON (ID, USERNAME, LOGGED_IN) VALUES (&apos;&quot;+$(&apos;PID&apos;)+&quot;&apos;, &apos;&quot;+$(&apos;FirstName&apos;)+&quot;&apos;, 0)&quot;);
+
+
 
 } finally {
 	if (dbConn) { 
@@ -222,7 +226,7 @@ try {
             <name>PID</name>
             <sequenceNumber>0</sequenceNumber>
             <variable>PID</variable>
-            <mapping>msg[&apos;MSH&apos;][&apos;MSH.20&apos;][&apos;MSH.20.1&apos;].toString()</mapping>
+            <mapping>msg[&apos;MSH&apos;][&apos;MSH.20&apos;][&apos;MSH.20.2&apos;].toString()</mapping>
             <defaultValue></defaultValue>
             <replacements/>
             <scope>CHANNEL</scope>
@@ -481,7 +485,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1508781957614</time>
+        <time>1508784131022</time>
         <timezone>America/New_York</timezone>
       </lastModified>
       <pruningSettings>
