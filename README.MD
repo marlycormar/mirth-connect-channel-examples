@@ -9,6 +9,13 @@
         admin
         admin
 
+1. Database credientials:
+		
+		database: mirth-test
+		database: test
+		user: mirth
+		password: password
+
 
 
 ## Useful commands:
@@ -18,4 +25,3 @@
         docker exec -it <mycontainer> bash
 
 	
-
