@@ -35,6 +35,12 @@ RUN chown -R mirth /var/spool/mirth
 VOLUME /var/spool/mirth
 # ----
 
+# create directories to store HL7 messages
+RUN mkdir /home/Pickup
+RUN mkdir /home/Dropoff
+RUN mkdir /home/Error
+
+
 EXPOSE 8080 8443
 
 COPY docker-entrypoint.sh /
