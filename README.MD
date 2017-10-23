@@ -25,11 +25,11 @@ The channel `./mirth-connect/HL7_to_MySQL_database.xml` will read all the **hl7*
 		docker exec -it <mirth-connect_container_id> bash
 		cd /home/Pickup
 To find the `mirth-connect_container_id`, run `docker ps`.
-
 1. Create a file with extension `.hl7` and add the following HL7 message:
 
 		MSH|^~\&|EPICADT|DH|LABADT|DH|201301011226||ADT^A01|HL7MSG00001|P|2.3| EVN|A01|201301011223|| PID|||MRN12346^2^M11||Cormar^Marly||19710101|F||C|1 DATICA STREET^^MADISON^WI^13001-1020|GL|(414)379-1212|(414)271-3434||S||MRN12344001^2^M10|123456789|987654^NC| 
 
+1. Deploy channel.
 
 
 ## Useful:
