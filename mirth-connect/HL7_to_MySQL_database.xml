@@ -3,7 +3,7 @@
   <nextMetaDataId>2</nextMetaDataId>
   <name>HL7 to MySQL database</name>
   <description></description>
-  <revision>21</revision>
+  <revision>2</revision>
   <sourceConnector version="3.5.1">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -204,11 +204,8 @@
 
 try {
 	dbConn = DatabaseConnectionFactory.createDatabaseConnection(&apos;com.mysql.jdbc.Driver&apos;,&apos;jdbc:mysql://mysql/mirth-test&apos;,&apos;root&apos;,&apos;password&apos;);
-
 	
-
-	var result = dbConn.executeUpdate(&quot;INSERT INTO PERSON (ID, USERNAME, LOGGED_IN) VALUES (&apos;&quot;+$(&apos;PID&apos;)+&quot;&apos;, &apos;&quot;+$(&apos;FirstName&apos;)+&quot;&apos;, 0)&quot;);
-
+	var result = dbConn.executeUpdate(&quot;INSERT INTO PERSON (USERNAME, FIRSTNAME, LASTNAME, LOGGED_IN) VALUES (&apos;&quot;+$(&apos;Username&apos;)+&quot;&apos;, &apos;&quot;+$(&apos;FirstName&apos;)+&quot;&apos;, &apos;&quot;+$(&apos;LastName&apos;)+&quot;&apos;, 0)&quot;);
 
 
 } finally {
@@ -223,10 +220,10 @@ try {
       <transformer version="3.5.1">
         <elements>
           <com.mirth.connect.plugins.mapper.MapperStep>
-            <name>PID</name>
+            <name>Username</name>
             <sequenceNumber>0</sequenceNumber>
-            <variable>PID</variable>
-            <mapping>msg[&apos;MSH&apos;][&apos;MSH.20&apos;][&apos;MSH.20.2&apos;].toString()</mapping>
+            <variable>Username</variable>
+            <mapping>msg[&apos;MSH&apos;][&apos;MSH.20&apos;][&apos;MSH.20.1&apos;].toString()</mapping>
             <defaultValue></defaultValue>
             <replacements/>
             <scope>CHANNEL</scope>
@@ -485,7 +482,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1508784131022</time>
+        <time>1508786777033</time>
         <timezone>America/New_York</timezone>
       </lastModified>
       <pruningSettings>
