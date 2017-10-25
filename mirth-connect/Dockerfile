@@ -10,7 +10,10 @@ RUN useradd -u 1000 mirth
 
 # grab gosu for easy step-down from root
 RUN gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
-RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates wget && rm -rf /var/lib/apt/lists/* \
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates wget \
+	&& apt-get update \
+	&& apt-get install -y --no-install-recommends vim \
+	&& rm -rf /var/lib/apt/lists/* \
 	&& wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/1.2/gosu-$(dpkg --print-architecture)" \
 	&& wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/1.2/gosu-$(dpkg --print-architecture).asc" \
 	&& gpg --verify /usr/local/bin/gosu.asc \
@@ -35,11 +38,11 @@ RUN chown -R mirth /var/spool/mirth
 VOLUME /var/spool/mirth
 # ----
 
-# create directories to store HL7 messages
+# create directories to store/manage HL7 messages
 RUN mkdir /home/Pickup
 RUN mkdir /home/Dropoff
 RUN mkdir /home/Error
-
+RUN chown mirth /home/Pickup /home/Dropoff /home/Error
 
 EXPOSE 8080 8443
 
