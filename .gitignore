@@ -1,0 +1,4 @@
+data
+data/db/*
+data/spools/in/*
+data/spools/out/*
