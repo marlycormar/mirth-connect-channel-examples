@@ -1,41 +1,22 @@
 <channel version="3.5.1">
   <id>7ef65bb8-203b-4a82-a312-33fb73cff9ed</id>
   <nextMetaDataId>2</nextMetaDataId>
-  <name>HL7 to MySQL database</name>
+  <name>HTTP to Channel Writer</name>
   <description></description>
-  <revision>2</revision>
+  <revision>4</revision>
   <sourceConnector version="3.5.1">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
-    <properties class="com.mirth.connect.connectors.file.FileReceiverProperties" version="3.5.1">
-      <pluginProperties/>
-      <pollConnectorProperties version="3.5.1">
-        <pollingType>INTERVAL</pollingType>
-        <pollOnStart>false</pollOnStart>
-        <pollingFrequency>5000</pollingFrequency>
-        <pollingHour>0</pollingHour>
-        <pollingMinute>0</pollingMinute>
-        <cronJobs/>
-        <pollConnectorPropertiesAdvanced>
-          <weekly>true</weekly>
-          <inactiveDays>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-          </inactiveDays>
-          <dayOfMonth>1</dayOfMonth>
-          <allDay>true</allDay>
-          <startingHour>8</startingHour>
-          <startingMinute>0</startingMinute>
-          <endingHour>17</endingHour>
-          <endingMinute>0</endingMinute>
-        </pollConnectorPropertiesAdvanced>
-      </pollConnectorProperties>
+    <properties class="com.mirth.connect.connectors.http.HttpReceiverProperties" version="3.5.1">
+      <pluginProperties>
+        <com.mirth.connect.plugins.httpauth.NoneHttpAuthProperties version="3.5.1">
+  <authType>NONE</authType>
+        </com.mirth.connect.plugins.httpauth.NoneHttpAuthProperties>
+      </pluginProperties>
+      <listenerConnectorProperties version="3.5.1">
+        <host>0.0.0.0</host>
+        <port>8002</port>
+      </listenerConnectorProperties>
       <sourceConnectorProperties version="3.5.1">
         <responseVariable>None</responseVariable>
         <respondAfterProcessing>true</respondAfterProcessing>
@@ -50,34 +31,19 @@
         </resourceIds>
         <queueBufferSize>1000</queueBufferSize>
       </sourceConnectorProperties>
-      <scheme>FILE</scheme>
-      <host>/home/Pickup</host>
-      <fileFilter>*.hl7</fileFilter>
-      <regex>false</regex>
-      <directoryRecursion>false</directoryRecursion>
-      <ignoreDot>true</ignoreDot>
-      <anonymous>true</anonymous>
-      <username>anonymous</username>
-      <password>anonymous</password>
-      <timeout>10000</timeout>
-      <secure>true</secure>
-      <passive>true</passive>
-      <validateConnection>true</validateConnection>
-      <afterProcessingAction>MOVE</afterProcessingAction>
-      <moveToDirectory>/home/Dropoff</moveToDirectory>
-      <moveToFileName>${originalFilename}</moveToFileName>
-      <errorReadingAction>MOVE</errorReadingAction>
-      <errorResponseAction>AFTER_PROCESSING</errorResponseAction>
-      <errorMoveToDirectory>/home/Error</errorMoveToDirectory>
-      <errorMoveToFileName>${originalFilename}</errorMoveToFileName>
-      <checkFileAge>true</checkFileAge>
-      <fileAge>1000</fileAge>
-      <fileSizeMinimum>0</fileSizeMinimum>
-      <fileSizeMaximum></fileSizeMaximum>
-      <ignoreFileSizeMaximum>true</ignoreFileSizeMaximum>
-      <sortBy>date</sortBy>
-      <binary>false</binary>
-      <charsetEncoding>DEFAULT_ENCODING</charsetEncoding>
+      <xmlBody>false</xmlBody>
+      <parseMultipart>true</parseMultipart>
+      <includeMetadata>false</includeMetadata>
+      <binaryMimeTypes>application/.*(?&lt;!json|xml)$|image/.*|video/.*|audio/.*</binaryMimeTypes>
+      <binaryMimeTypesRegex>true</binaryMimeTypesRegex>
+      <responseContentType>text/plain</responseContentType>
+      <responseDataTypeBinary>false</responseDataTypeBinary>
+      <responseStatusCode></responseStatusCode>
+      <responseHeaders class="linked-hash-map"/>
+      <charset>UTF-8</charset>
+      <contextPath></contextPath>
+      <timeout>0</timeout>
+      <staticResources/>
     </properties>
     <transformer version="3.5.1">
       <elements/>
@@ -165,7 +131,7 @@
     <filter version="3.5.1">
       <elements/>
     </filter>
-    <transportName>File Reader</transportName>
+    <transportName>HTTP Listener</transportName>
     <mode>SOURCE</mode>
     <enabled>true</enabled>
     <waitForPrevious>true</waitForPrevious>
@@ -174,10 +140,10 @@
     <connector version="3.5.1">
       <metaDataId>1</metaDataId>
       <name>HL7 to MySQL Patient database</name>
-      <properties class="com.mirth.connect.connectors.jdbc.DatabaseDispatcherProperties" version="3.5.1">
+      <properties class="com.mirth.connect.connectors.vm.VmDispatcherProperties" version="3.5.1">
         <pluginProperties/>
         <destinationConnectorProperties version="3.5.1">
-          <queueEnabled>true</queueEnabled>
+          <queueEnabled>false</queueEnabled>
           <sendFirst>false</sendFirst>
           <retryIntervalMillis>10000</retryIntervalMillis>
           <regenerateTemplate>false</regenerateTemplate>
@@ -196,26 +162,9 @@
           <queueBufferSize>1000</queueBufferSize>
           <reattachAttachments>true</reattachAttachments>
         </destinationConnectorProperties>
-        <driver>com.mysql.jdbc.Driver</driver>
-        <url>jdbc:mysql://mysql/mirth-test</url>
-        <username>root</username>
-        <password>password</password>
-        <query>var dbConn;
-
-try {
-	dbConn = DatabaseConnectionFactory.createDatabaseConnection(&apos;com.mysql.jdbc.Driver&apos;,&apos;jdbc:mysql://mysql/mirth-test&apos;,&apos;root&apos;,&apos;password&apos;);
-	
-	var result = dbConn.executeUpdate(&quot;INSERT INTO PERSON (USERNAME, FIRSTNAME, LASTNAME, LOGGED_IN) VALUES (&apos;&quot;+$(&apos;Username&apos;)+&quot;&apos;, &apos;&quot;+$(&apos;FirstName&apos;)+&quot;&apos;, &apos;&quot;+$(&apos;LastName&apos;)+&quot;&apos;, 0)&quot;);
-
-
-} finally {
-	if (dbConn) { 
-		dbConn.close();
-	}
-}
-
-</query>
-        <useScript>true</useScript>
+        <channelId>none</channelId>
+        <channelTemplate>${message.encodedData}</channelTemplate>
+        <mapVariables/>
       </properties>
       <transformer version="3.5.1">
         <elements>
@@ -251,6 +200,15 @@ try {
             <sequenceNumber>3</sequenceNumber>
             <variable>Account</variable>
             <mapping>msg[&apos;MSH&apos;][&apos;MSH.20&apos;][&apos;MSH.20.3&apos;].toString()</mapping>
+            <defaultValue></defaultValue>
+            <replacements/>
+            <scope>CHANNEL</scope>
+          </com.mirth.connect.plugins.mapper.MapperStep>
+          <com.mirth.connect.plugins.mapper.MapperStep>
+            <name>PhoneNumber</name>
+            <sequenceNumber>4</sequenceNumber>
+            <variable>PhoneNumber</variable>
+            <mapping>msg[&apos;MSH&apos;][&apos;MSH.30&apos;][&apos;MSH.30.1&apos;].toString()</mapping>
             <defaultValue></defaultValue>
             <replacements/>
             <scope>CHANNEL</scope>
@@ -429,7 +387,7 @@ MV4yXk0xMHwxMjM0NTY3ODl8OTg3NjU0Xk5DfA==</inboundTemplate>
       <filter version="3.5.1">
         <elements/>
       </filter>
-      <transportName>Database Writer</transportName>
+      <transportName>Channel Writer</transportName>
       <mode>DESTINATION</mode>
       <enabled>true</enabled>
       <waitForPrevious>true</waitForPrevious>
@@ -482,7 +440,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1508786777033</time>
+        <time>1511780703487</time>
         <timezone>America/New_York</timezone>
       </lastModified>
       <pruningSettings>
