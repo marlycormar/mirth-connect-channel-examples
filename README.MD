@@ -26,6 +26,7 @@ The channel `./mirth-connect/channel.xml` will read all the **hl7** messages (wi
 
 	curl -X POST --header 'Content-Type: application/xml' --header 'Accept: text/html' -d 'MSH|^~\&|EPICADT|DH|LABADT|DH|201301011226||ADT^A01|HL7MSG00001|P|2.3| EVN|A01|201301011223|| PID|||MRN12346^2^M11||Noether^Emmy||19710101|F||C|1 DATICA STREET^^MADISON^WI^13001-1020|GL|(414)379-1212|(414)271-3434||S||MRN12344001^2^M10|123456789|987654^NC|' 'http://127.0.0.1:8002/api/channels/69c079fd-1cc3-469f-8f00-b4c51638fdde/messages'
 
+Here docker is runnning in 8002 port and channel_id is 69c079fd-1cc3-469f-8f00-b4c51638fdde
 
 
 ## Useful:
