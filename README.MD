@@ -1,4 +1,7 @@
 # MIRTH CONNECT EXAMPLE ON DOCKER
+`Authors: Marly Cormar, Surya Prasanna.`
+
+*Please note that this is a work in progress! Any suggestions/bug fixes are appreciated. *
 
 The goal of this multi-container docker is to test the functionalities of Mirth Connect. In particular, we will use Mirth Connect to read an HL7 message of type *(ADT-A01) Admit a patient* over an HTTP request, transform it, and then send it to a channel writer.
 
@@ -55,3 +58,4 @@ Please make sure to substitute `<channel_id>` with the actual channel id, e.g. `
 
             3306->3306
 	
+
