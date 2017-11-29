@@ -5,7 +5,6 @@ The goal of this multi-container docker is to test the functionalities of Mirth 
 The channel `./mirth-connect/channel.xml` will read all the **hl7** messages (with format ADT-A01) sent over HTTP requests. 
 
 
-
 ## Configuration
 1. Create all the containers in detached mode:
 
@@ -40,4 +39,6 @@ Please make sure to substitute`<channel_id>` with the actual channel id. Here do
 		database: mirth-test
 		user: mirth
 		password: password
+
+- the local folder `./shared_folder/` is shared with the docker container that has mirth. The contents of such folder are being mapped to `/var/shared_volume` in the mirth container.
 	
