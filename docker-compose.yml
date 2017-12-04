@@ -15,9 +15,9 @@ services:
       - "3306:3306"
 
   mirth-connect:
-    build: mirth-connect
+    build: .
     volumes:
-      - "./mirth-connect/mirth.properties:/opt/mirth-connect/conf/mirth.properties:ro"
+      - "./mirth.properties:/opt/mirth-connect/conf/mirth.properties:ro"
       - "./data/spools/:/var/spool/mirth/:rw"
       - "./shared_volume:/var/shared_volume:rw"
     ports: 
