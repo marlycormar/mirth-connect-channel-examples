@@ -3,7 +3,11 @@
 
 *Please note that this is a work in progress! Any suggestions/bug fixes are appreciated. *
 
-The goal of this multi-container docker is to test the functionalities of Mirth Connect. 
+
+## Current Examples
+The goal of this multi-container docker is to test the functionalities of Mirth Connect.
+
+1. 
 
 
 
@@ -26,6 +30,18 @@ The goal of this multi-container docker is to test the functionalities of Mirth 
 
 ## Useful:
 
+- stop all containers:
+        
+        docker stop $(docker ps -a -q)
+
+- remove all docker containers: 
+        
+        docker rm $(docker ps -a -q)
+        
+- remove all docker images:
+
+        docker rmi $(docker images -q)
+        
 - ssh into container:
 
         docker exec -it <mycontainer_id> bash
