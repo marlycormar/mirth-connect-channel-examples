@@ -1,0 +1,11 @@
+{
+    "application_sending" : "EPICADT",
+    "sending_facility" : "DH",
+    "receiving_application" : "LABADT",
+    "receiving_facility" : "DH",
+    "time": "201301011226",
+    "message_type" : "ADT^A01",
+    "message_control_id" : "HL7MSG00001",
+    "process_id" : "P",
+    "version_id": "2.3"
+}
