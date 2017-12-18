@@ -1,5 +1,3 @@
-
-
 ## Description
 This channel receives a `json` file over an `HTTP` request, transforms it into an `hl7` message, and sends it to another channel. Templates for both the `json` and `hl7` files are included.
 
