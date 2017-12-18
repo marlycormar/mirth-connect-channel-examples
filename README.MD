@@ -8,9 +8,17 @@ Channels included:
 
 1. **json_to_hl7_dest_channel_writer**: This channel receives a `json` file over an `HTTP` request, transforms it into an `hl7` message, and sends it to another channel.
 
+        Datatype: JSON -> HL7v2.x, HL7v2.x -> HL7v2.x
         Source: HTTP Listener
         Source Transformer: json to hl7
         Destination: Channel Writer
+        
+2. **hl7FileReader_to_dbWriter**: Reads a file containing an `hl7` message and updates a mysql db accordingly.
+    
+        Datatype: HL7v2.x
+        Source: File Reader
+        Destination Transformer: creates steps from the hl7 template
+        Destination: Database Writer
 
 
 
