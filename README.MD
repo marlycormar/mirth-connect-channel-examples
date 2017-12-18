@@ -1,13 +1,16 @@
 # MIRTH CONNECT EXAMPLES ON DOCKER
 `Authors: Marly Cormar, Surya Prasanna.`
 
-*Please note that this is a work in progress! Any suggestions/bug fixes are appreciated. *
-
-
 ## Current Examples
 The goal of this multi-container docker is to test the functionalities of Mirth Connect.
 
-1. 
+Channels included:
+
+1. **json_to_hl7_dest_channel_writer**: This channel receives a `json` file over an `HTTP` request, transforms it into an `hl7` message, and sends it to another channel.
+
+        Source: HTTP Listener
+        Source Transformer: json to hl7
+        Destination: Channel Writer
 
 
 
