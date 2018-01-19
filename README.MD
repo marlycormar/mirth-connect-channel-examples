@@ -1,6 +1,9 @@
 # MIRTH CONNECT EXAMPLES ON DOCKER
 `Authors: Marly Cormar, Surya Prasanna.`
 
+## Prerequisites
+- The latest [Java Runtime Environment](https://www.java.com/en/).
+
 ## Current Examples
 The goal of this multi-container docker is to test the functionalities of Mirth Connect.
 
@@ -12,9 +15,9 @@ Channels included:
         Source: HTTP Listener
         Source Transformer: json to hl7
         Destination: Channel Writer
-        
+
 2. **hl7FileReader_to_dbWriter**: Reads a file containing an `hl7` message and updates a mysql db accordingly.
-    
+
         Datatype: HL7v2.x
         Source: File Reader
         Destination Transformer: creates steps from the hl7 template
@@ -26,7 +29,7 @@ Channels included:
 1. Create all the containers in detached mode:
 
         docker-compose up -d
-     
+
 1. Open Mirth Connect by double clicking file **webstart.jnlp**. Use credentials:
 
         admin
@@ -34,7 +37,7 @@ Channels included:
 
 1. Once Mirth Connect is open, we need to import the example channel. Click on **Channels** located on left menu.
 
-1. Also on the left menu, click **Import Channel** and add the channel `./mirth-connect/channel.xml` 
+1. Also on the left menu, click **Import Channel** and add the channel `./mirth-connect/channel.xml`
 
 1. Deploy channel.
 
@@ -42,17 +45,17 @@ Channels included:
 ## Useful:
 
 - stop all containers:
-        
+
         docker stop $(docker ps -a -q)
 
-- remove all docker containers: 
-        
+- remove all docker containers:
+
         docker rm $(docker ps -a -q)
-        
+
 - remove all docker images:
 
         docker rmi $(docker images -q)
-        
+
 - ssh into container:
 
         docker exec -it <mycontainer_id> bash
@@ -75,4 +78,3 @@ Channels included:
     - mysql:
 
             3306->3306
-	
