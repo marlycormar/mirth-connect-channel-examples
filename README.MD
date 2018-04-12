@@ -60,6 +60,10 @@ Channels included:
 
         docker exec -it <mycontainer_id> bash
 
+- prune the system;
+
+        docker system prune
+
 - database credentials:
 
 		database: mirth-test
