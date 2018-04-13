@@ -32,6 +32,7 @@ Channels included:
 
 1. Open Mirth Connect by double clicking file **webstart.jnlp**. Use credentials:
 
+        https://0.0.0.0:8443
         admin
         admin
 
@@ -40,6 +41,31 @@ Channels included:
 1. Also on the left menu, click **Import Channel** and add the channel `./mirth-connect/channel.xml`
 
 1. Deploy channel.
+
+
+## Troubleshoot
+If the java applet **webstart.jnlp** fails to connect to the containers:
+
+1. Delete the contents of the folder `data`:
+
+        rm -r data/*
+        
+1. Check the ports on which the server is running:
+        
+        docker ps
+
+1. Download mirth connect admin by going to:
+        
+        127.0.0.1:<8080_PORT>/webstart.jnlp
+e.g.,
+        
+        127.0.0.1:32771/webstart.jnlp
+
+1. Provide the following configuration:
+        
+        host: https://localhost:<8443_PORT>
+        username: admin
+        password: admin
 
 
 ## Useful:
