@@ -157,7 +157,7 @@ RzAwMDAxfFB8Mi4zfCAKUElEfHx8fHx8fHx8fHx8fHx8fHx8fHwKUEQxfHx8fHw=</outboundTempla
           <queueBufferSize>1000</queueBufferSize>
           <reattachAttachments>true</reattachAttachments>
         </destinationConnectorProperties>
-        <channelId>7ef65bb8-203b-4a82-a312-33fb73cff9ed</channelId>
+        <channelId>none</channelId>
         <channelTemplate>${message.transformedData}</channelTemplate>
         <mapVariables/>
       </properties>
