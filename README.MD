@@ -66,9 +66,6 @@ If the java applet **webstart.jnlp** fails to connect to the containers:
 1. Download mirth connect admin by going to:
         
         127.0.0.1:<8080_PORT>/webstart.jnlp
-e.g.,
-        
-        127.0.0.1:32771/webstart.jnlp
 
 1. Provide the following configuration:
         
