@@ -42,6 +42,15 @@ Channels included:
 
 1. Deploy channel.
 
+## Web Interface
+
+- Admin interface at:
+
+        https://127.0.0.1:8443/webadmin/DashboardStatistics.action
+    
+- Channel interface at:
+
+        https://127.0.0.1:8443/api/
 
 ## Troubleshoot
 If the java applet **webstart.jnlp** fails to connect to the containers:
