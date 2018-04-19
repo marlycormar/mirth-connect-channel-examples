@@ -92,9 +92,13 @@ If the java applet **webstart.jnlp** fails to connect to the containers:
 
         docker exec -it <mycontainer_id> bash
 
-- prune the system;
+- prune the system:
 
         docker system prune
+        
+- see volumes:
+
+        docker volume ls
 
 - database credentials:
 
