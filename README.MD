@@ -42,7 +42,7 @@ Channels included:
         admin
         admin
 
-1. Once Mirth Connect is open, we need to import the example channel. Click on **Channels** located on left menu.
+1. Once Mirth Connect is open, import the example channel you will be using. Click on **Channels** located on the left menu.
 
 1. Also on the left menu, click **Import Channel** and add the channel `./mirth-connect/channel.xml`
 
