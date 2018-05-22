@@ -1,5 +1,5 @@
 # MIRTH CONNECT EXAMPLES ON DOCKER
-`Authors: Marly Cormar, Surya Prasanna.`
+`Authors: Marly Cormar, Surya Prasanna, Dileep Rajput.`
 
 ## Prerequisites
 - The latest [Java Runtime Environment](https://www.java.com/en/).
