@@ -48,6 +48,14 @@ Channels included:
 
 1. Deploy channel.
 
+1. Optional:
+Inside the mirth container, you may modify the file `/opt/mirth-connect/conf/mirth.properties` to allow, for example, that user accounts are locked after 10 unsuccessful login attempts:
+
+        password.lockoutperiod = 1
+        password.expiration = 10
+
+
+
 ## Web Interface
 
 - Admin interface at:
